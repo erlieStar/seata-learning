@@ -1,0 +1,33 @@
+server:
+  port: 20002
+
+spring:
+  application:
+    name: hmily-tcc-tm
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url : jdbc:mysql://myhost:3306/db_account_1?useUnicode=true&characterEncoding=utf8
+    username: test
+    password: test
+
+org:
+  dromara:
+    hmily:
+      hmilyDbConfig:
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://myhost:3306/hmily?useUnicode=true&useAffectedRows=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        username: test
+        password: test
+      recoverDelayTime: 128
+      repositorySupport: db
+      retryMax: 30
+      scheduledDelay: 128
+      scheduledThreadMax: 10
+      serializer: kryo
+      started: true
+
+logging:
+  level:
+    com:
+      javashitang:
+          dao: DEBUG

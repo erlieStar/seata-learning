@@ -1,0 +1,30 @@
+server:
+  port: 5001
+
+spring:
+  jta:
+    atomikos:
+      datasource:
+        primary:
+          borrow-connection-timeout: 10000.0
+          max-lifetime: 20000.0
+          max-pool-size: 25.0
+          min-pool-size: 3.0
+          unique-resource-name: test1
+          xa-data-source-class-name: com.mysql.jdbc.jdbc2.optional.MysqlXADataSource
+          xa-properties:
+            password: test
+            url: jdbc:mysql://myhost:3306/db_account_1
+            user: test
+        secondary:
+          borrow-connection-timeout: 10000.0
+          max-lifetime: 20000.0
+          max-pool-size: 25.0
+          min-pool-size: 3.0
+          unique-resource-name: test2
+          xa-data-source-class-name: com.mysql.jdbc.jdbc2.optional.MysqlXADataSource
+          xa-properties:
+            password: test
+            url: jdbc:mysql://myhost:3306/db_account_2
+            user: test
+    enabled: true

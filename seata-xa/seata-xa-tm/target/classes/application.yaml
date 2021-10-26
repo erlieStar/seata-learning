@@ -1,0 +1,31 @@
+server:
+  port: 30002
+
+spring:
+  application:
+    name: seata-xa-tm
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url : jdbc:mysql://myhost:3306/db_account_1?useUnicode=true&characterEncoding=utf8
+    username: test
+    password: test
+
+seata:
+  data-source-proxy-mode: XA
+  enabled: true
+  application-id: ${spring.application.name}
+  tx-service-group: my_test_tx_group
+  service:
+    vgroup-mapping:
+      my_test_tx_group: default
+    grouplist:
+      default: myhost:18091
+    disable-global-transaction: false
+  config:
+    type: file
+    file:
+      name: file.conf
+  registry:
+    type: file
+    file:
+      name: file.conf
