@@ -11,7 +11,7 @@
 
     <artifactId>transaction-msg-producer</artifactId>
 
-    <name>msg-producer</name>
+    <name>transaction-msg-producer</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
