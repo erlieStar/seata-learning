@@ -31,7 +31,7 @@ public class AccountConsumer implements RocketMQListener<AccountMsg> {
     @Override
     @Transactional
     public void onMessage(AccountMsg accountMsg) {
-        log.info("onMessage");
+        log.info("onMessage param flowId: {}", accountMsg.getFlowId());
         accountMapper.updateMoney(accountMsg.getToUserId(), accountMsg.getMoney());
         accountFlowMapper.insertFlow(accountMsg.getFlowId(), accountMsg.getToUserId(), accountMsg.getMoney(), 1);
     }

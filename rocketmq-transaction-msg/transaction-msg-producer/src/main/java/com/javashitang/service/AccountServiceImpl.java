@@ -32,7 +32,7 @@ public class AccountServiceImpl implements AccountService {
      */
     @Override
     public void sendUpdateMsg(AccountMsg accountMsg) {
-        log.info("sendUpdateMsg");
+        log.info("sendUpdateMsg param flowId: {}", accountMsg.getFlowId());
         Message<AccountMsg> message = MessageBuilder.withPayload(accountMsg).build();
         rocketMQTemplate.sendMessageInTransaction("account_topic:account_tag", message, null);
     }
@@ -44,7 +44,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     @Transactional
     public void update(AccountMsg accountMsg) {
-        log.info("update");
+        log.info("update param flowId: {}", accountMsg.getFlowId());
         accountMapper.updateMoney(accountMsg.getFromUserId(), accountMsg.getMoney() * -1);
         accountFlowMapper.insertFlow(accountMsg.getFlowId(), accountMsg.getFromUserId(), accountMsg.getMoney(), 1);
     }

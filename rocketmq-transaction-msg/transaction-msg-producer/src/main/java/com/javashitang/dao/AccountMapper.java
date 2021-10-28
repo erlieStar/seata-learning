@@ -9,6 +9,6 @@ import org.apache.ibatis.annotations.Update;
  */
 public interface AccountMapper {
 
-    @Update("update account_info set money = money + #{money} where money + #{money} > 0 and user_id = #{userId}")
+    @Update("update account_info set balance = balance + #{money} where balance + #{money} > 0 and user_id = #{userId}")
     int updateMoney(@Param("userId") String userId, @Param("money") Integer money);
 }
