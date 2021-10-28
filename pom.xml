@@ -19,7 +19,7 @@
         <module>best-effort-notification</module>
     </modules>
 
-    <name>spring-cloud-distributed-transaction</name>
+    <name>seata-learning</name>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
