@@ -1,6 +1,7 @@
 package com.javashitang.controller;
 
 import com.javashitang.client.RmAccountClient;
+import io.seata.spring.annotation.GlobalLock;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author lilimin
@@ -37,6 +39,22 @@ public class AccountController {
         if (flag != null && flag) {
             throw new RuntimeException("测试同时回滚");
         }
+        return "success";
+    }
+
+    @GlobalLock
+    @RequestMapping("queryBalance")
+    public List<Integer> queryBalance() {
+        String sql = "select balance from account_info for update";
+        List<Integer> balances = jdbcTemplate.queryForList(sql, Integer.class);
+        return balances;
+    }
+
+    @GlobalLock
+    @RequestMapping("updateBalance")
+    public String updateBalance(@RequestParam("money") Integer money) {
+        String sql = "update account_info set balance = ?";
+        jdbcTemplate.update(sql, new Object[]{money});
         return "success";
     }
 }
